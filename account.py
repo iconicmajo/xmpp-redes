@@ -23,17 +23,11 @@ def createUser(new_user, new_password):
 
 
 def login(user, password):
-  userName = input("Usuario (name@alumchat.xyz)>>> ")
-  passWord = input("Contraseña>>> ")
+  userName = input("user:  ")
+  passWord = input("password: ")
   user = userName
   psswrd = passWord
   print("-----------------")
   print(user, psswrd)
-  """xmpp = EchoBot(userName, passWord, "1")
-  xmpp.register_plugin('xep_0030') # Service Discovery
-  xmpp.register_plugin('xep_0199') 
-  xmpp.connect()
-  xmpp.process(timeout = 10)"""
-  print("USUARIO LOGGEADO")
   # xmpp.process(forever=True)
   # return xmpp
