@@ -5,67 +5,78 @@
 # Import de Librerias
 import xmpp
 import slixmpp
+import threading
+from slixmpp.clientxmpp import ClientXMPP
+from slixmpp.exceptions import IqError, IqTimeout
+
+import time
+
+"""
+************************
+ESPANOL
+************************
+DENTRO DE ESTE ARCHIVO SE HARA TODAS LAS ACCIONES CORRESPONDIENTES
+A LOS MENSAJES ENTRE ESTOS ESTAN 
+-PRESENCIA
+-ENVIAR MENSAJE
+-RECIBIR MENSAJE
+
+************************
+ENGLISH
+************************
+INSIDE THIS FILE YOU WILL FIND ALL THE FUNCTIONS NEEDED FOR MESSAGE ACTIONS
+THE ACTIONS ARE
+-PRESENCE MESSAGE
+-RECIVE MESSAGE
+-SEND MESSAGE
+"""
+
 
 # Enviar Mensaje Privado
-
-
-class PrivateMessage(slixmpp.ClientXMPP):
+class PrivateMessage(ClientXMPP):
     def __init__(self, user, password, user_destiny, message):
-        slixmpp.ClientXMPP.__init__(self, user, password)
+        ClientXMPP.__init__(self, user, password)
         self.user_destiny = user_destiny
         self.msg = message
 
+        self.add_event_handler("session_start", self.session_login)
+        #self.add_event_handler("logout", self.send_message)
 
-    async def start(self, event):
-        # Send presence
-        self.send_presence()
-        await self.get_roster()
-
-        self.add_event_handler("session_start", self.start)
-        self.add_event_handler("message", self.message)
-
-    # Send message of type chat
+    def session_login(self, event):
+        self.send_presence('chat', 'sendin message!')
+        self.get_roster()
         self.send_message(mto=self.user_destiny,
                           mbody=self.msg,
                           mtype='chat')
+        print('Message Send!')
+        self.disconnect(wait=False)
 
-    def message(self, msg):
-        # Print message
-        if msg['type'] in ('chat'):
-            user_destiny = msg['to']
-            body = msg['body']
+#Enviar mensaje de presencia
+class PesenceMessage(ClientXMPP):
+    def __init__(self, user, password, message):
+        ClientXMPP.__init__(self, user, password)
+        self.add_event_handler("session_start", self.session_login)
+        self.presence = threading.Event()
+        self.contacts = []
 
-            # print the message and the user_destiny
-            print(str(user_destiny) + ": " + str(body))
+    def session_login(self, event):
+        self.send_presence('chat', 'hola')
+        self.get_roster()
 
-            # Ask new message
-            message = input("Write the message: ")
+        self.presence.wait(3)
 
-            # Send message
-            self.send_message(mto=self.user_destiny,
-                              mbody=message)
+        print('enviado')
+        self.disconnect()
+        #self.send_pres()
 
-    '''def privateMsg(self, message):
-        print(' ')
-        print('Yout Choose Private Message')
-
-        self.send_presence()
-        await self.get_roster()
-        send_message()
-        # xmpp.connect()'''
-
-# Enviar Mensaje de Presencia
-
-
-def presenceMessage():
-    print(' ')
-    print('Yout Choose Presence Message')
-    message = input('Message of Presence: ')
-    print(message)
-
-# Recibir mensaje
+    
+    def send_pres(self, show, status):
+        print('')
+        self.send_presence(show, status)
+        self.get_roster()
+        time.sleep(3)
+        print('Message Send!')
 
 
-def getMessage():
-    print(' ')
-    print('Yout Choose Get Message')
+
+#Enviar mensaje de presencia

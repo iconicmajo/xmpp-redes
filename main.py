@@ -30,9 +30,9 @@ FOR THE FUNTIONS NEEDED FOR USE
 menu = True
 while menu:
     print('***********************')
-    print('       CHAT REDES      ')
+    print('         CHAT          ')
     print('***********************')
-    print('1. Login')
+    """print('1. Login')
     print('2. Create User')
     print('3. Send Private Message')
     print('4. See Users Info')
@@ -42,7 +42,7 @@ while menu:
     print('8. Send Files')
     print('9. Logout')
     print('10. Delete Account')
-    print('')
+    print('')"""
     option = input('Please select an option: ')
     print(' ')
 
@@ -79,7 +79,17 @@ while menu:
       print('option 4')
       
     elif option == '5':
-      presenceMessage()
+      print(' ')
+      username = input('user:  ')
+      password = input('password: ')
+      message = input('Message: ')
+      xmpp = PesenceMessage(username, password, message)
+      xmpp.register_plugin('xep_0030') # Service Discovery
+      xmpp.register_plugin('xep_0199') # XMPP Ping
+      xmpp.register_plugin('xep_0045') # Mulit-User Chat (MUC)
+      xmpp.register_plugin('xep_0096') # Jabber Search
+      xmpp.connect()
+      xmpp.process(forever=False)
 
     elif option == '6':
       print('option 6')
