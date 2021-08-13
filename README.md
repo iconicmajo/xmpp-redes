@@ -1,4 +1,4 @@
-# xmpp-redes
+### xmpp-redes
 
 ## What is this? 
 - A chat using XMPP protocol
