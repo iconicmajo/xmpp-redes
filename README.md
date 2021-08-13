@@ -32,4 +32,5 @@ python -3.7 main.py
 - Define Presence
 
 ## Video reference
-https://youtu.be/VlWVDHW2IO8
+
+[![Watch the video](https://i.imgur.com/vKb2F1B.png)](https://youtu.be/VlWVDHW2IO8)
