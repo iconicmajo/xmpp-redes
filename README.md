@@ -32,4 +32,4 @@ python -3.7 main.py
 - Define Presence
 
 ## Video reference
-![The obligatory xkcd](https://youtu.be/VlWVDHW2IO8 'The obligatory xkcd')
+https://youtu.be/VlWVDHW2IO8
