@@ -10,6 +10,15 @@ cheat tar
 - Us
 
 # To run this you will need:
-```py -3.7 -m pip install slixxmpp
+```
+py -3.7 -m pip install slixxmpp
+
+```
+```
 py -3.7 -m pip install xmpppy
+```
+
+# To run this:
+```
+python -3.7 main.py
 ```
