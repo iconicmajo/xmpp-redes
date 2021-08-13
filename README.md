@@ -33,4 +33,4 @@ python -3.7 main.py
 
 ## Video reference
 
-[![Watch the video](https://i.imgur.com/vKb2F1B.png)](https://youtu.be/VlWVDHW2IO8)
+[![Watch the video](https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/XMPP_logo.svg/1200px-XMPP_logo.svg.png)](https://youtu.be/VlWVDHW2IO8)
